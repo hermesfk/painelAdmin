@@ -1,15 +1,31 @@
 <?php
 
+include_once 'painel/help/funcoes.php';
+
 $pg = isset( $_GET['pg']);
 
 if ($pg) {
     switch ($_GET['pg']) {
+        
+        
+        case 'inicial':
+            include_once 'site/inicio.php';
+
+            break;
+        
         case 'login':
             include_once 'painel/paginas/acesso/login.php';
 
             break;
-        case 'dashboard': //pagina inicial do painel administrativo
-            include_once 'painel/paginas/dashboard.php';
+        case 'dashboard':
+            //pagina inciail admin
+         if (verificarLogin()){
+             
+             include_once 'painel/paginas/dashboard.php';
+         } else {
+             echo 'login ou senha invalidos';
+           
+         }
 
             break;
 
